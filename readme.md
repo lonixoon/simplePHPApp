@@ -38,7 +38,7 @@ https://svyatoslav.biz/misc/psr_translation/#_PSR-4
       если есть вызываем метод runController.
     5. В методе  runController запускаем метод из контроллера прописанный в таблице маршрутов.
      В нашем случае это метод index из TestController
-    6 
+    6.  
           
           
           

@@ -8,5 +8,7 @@
 
 define('ROUTES',[
 '/' => 'MainController@index',
-'/test' =>'TestController@index'
+'/test' =>'TestController@index',
+'/form/create' =>'FormController@create'
+
 ]);

@@ -6,7 +6,7 @@
 </head>
 <body>
 <header>
-    Шапка
+    <?php echo $header; ?>
 </header>
 
 <section>
