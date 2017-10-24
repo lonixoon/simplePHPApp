@@ -1,6 +1,5 @@
 <?php
 namespace Loft;
-use Loft\Core;
 
 // Композер
 require 'vendor/autoload.php';
