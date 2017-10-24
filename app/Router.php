@@ -30,7 +30,14 @@ class Router
         if (!$this->isFoundRoute()) {
             $this->uri = '/';
         }
-        $this->runController();
+
+        if($this->isUserAuth()){
+            $this->runController();
+        }else{
+            $this->uri = '/login';
+        }
+
+
     }
 
     private function isFoundRoute()
@@ -50,5 +57,10 @@ class Router
         $controller->$action();
 
     }
+
+    public function isUserAuth(){
+        // код проверки
+        return true;
+}
 
 }

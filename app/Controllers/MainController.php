@@ -15,14 +15,14 @@ class MainController
 {
     public function index()
     {
-        $form = '<b>[eq</b>';
+        $form = Template::render('Views/form.tpl.php',[]);
 
         $vars =[
             'titlePage'=>'Основная страница',
             'content'=>$form,
             'header'=>'шапка'
         ];
-        dump(Template::render('Views/main.tpl.php',$vars));
+
        echo Template::render('Views/main.tpl.php',$vars);
 }
 }
