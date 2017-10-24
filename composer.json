@@ -1,0 +1,15 @@
+{
+  "name": "lonixoon/loft",
+  "authors": [
+    {
+      "name": "lonixoon",
+      "email": "a.soynov@auchan.ru"
+    }
+  ],
+  "require": {"symfony/var-dumper": ">=3.3 <4.0.0"},
+  "autoload": {
+    "psr-4": {
+      "Loft\\": "app/"
+    }
+  }
+}
