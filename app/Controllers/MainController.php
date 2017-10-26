@@ -8,21 +8,21 @@
 
 namespace Loft\Controllers;
 
-
 use Loft\Template;
 
 class MainController
 {
     public function index()
     {
-        $form = Template::render('Views/form.tpl.php',[]);
+        $content = Template::render('Views/index.tpl.php',[]);
 
         $vars =[
             'titlePage'=>'Основная страница',
-            'content'=>$form,
-            'header'=>'шапка'
+            'content'=>$content,
+            'header'=> '',
+            'footer' => ''
         ];
 
        echo Template::render('Views/main.tpl.php',$vars);
-}
+    }
 }

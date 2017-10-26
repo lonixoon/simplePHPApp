@@ -7,8 +7,14 @@
  */
 
 define('ROUTES',[
-'/' => 'MainController@index',
-'/test' =>'TestController@index',
-'/login' =>'LoginController@index'
+    '/' => 'MainController@index',
+    '/test' =>'TestController@index',
+    '/login' =>'LoginController@index',
+    '/feedback' =>'FeedbackController@index',
+    '/reg' =>'RegController@index',
+    '/404' =>'ErrorController@index'
+]);
 
+define('AUTHROUTES',[
+    '/feedback'
 ]);

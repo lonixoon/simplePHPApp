@@ -14,18 +14,16 @@ class LoginController
 {
     public function index()
     {
+        $content = Template::render('Views/login.tpl.php',[]);
 
-        if ($this->isPost()) {
-        } else {
-            $loginForm = Template::render('Views/login.tpl.php', []);
+        $vars =[
+            'titlePage'=>'Авторизация',
+            'content'=>$content,
+            'header'=> '',
+            'footer' => ''
+        ];
 
-            echo Template::render(
-                'Views/main.tpl.php', [
-                'content' => $loginForm
-            ]);
-        }
-
-
+        echo Template::render('Views/main.tpl.php',$vars);
     }
 
     public function isPost()

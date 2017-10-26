@@ -1,10 +1,19 @@
-<form action="/login" method="post">
-    <header>Login</header>
-    <label>Username <span>*</span></label>
-    <input name="user"/>
-    <div class="help">At least 6 character</div>
-    <label>Password <span>*</span></label>
-    <input name="password"/>
-    <div class="help">Use upper and lowercase lettes as well</div>
-    <button type="submit">Login</button>
+<h1 class="text-center">Страница авторизации</h1>
+<p><a href="/">Вернуться на главную</a></p>
+<p><a href="/reg">Регистрация</a></p>
+<form action="" class="form-horizontal" id="auth_form">
+	<div class="form-group" id="userLogin">
+		<input name="login" type="text" placeholder="Логин" class="form-control field required"
+					 data-validation="required">
+	</div>
+	<div class="form-group" id="userPassword">
+		<input name="password" type="password" placeholder="Пароль" class="form-control field required"
+					 data-validation="required">
+	</div>
+	<div class="form-group">
+		<div class="controls">
+			<button id="btnAuth" type="button" class="btn">Войти</button>
+		</div>
+	</div>
 </form>
+<div id="result_auth"></div>

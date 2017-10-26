@@ -14,6 +14,10 @@ class TestModel extends Model
 
     public function getDataFromDB()
     {
-        return $this->db->exec('ЗДЕСЬ У НАС SQL запрос');
+//        return $this->db->exec('ЗДЕСЬ У НАС SQL запрос');
+        $sql = 'SELECT * FROM users';
+        $result =$this->db->query($sql)->fetchAll();
+        dump($result);
+        return print_r($result);
     }
 }

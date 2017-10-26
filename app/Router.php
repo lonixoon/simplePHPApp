@@ -28,14 +28,25 @@ class Router
     {
         // Проверяем есть ли у нас такой маршрут, если нет то выводим стартовую страницу
         if (!$this->isFoundRoute()) {
-            $this->uri = '/';
+            $this->uri = '/404';
         }
 
-        if($this->isUserAuth()){
+        $authTest = in_array($this->uri, AUTHROUTES);
+
+        dump($authTest);
+
+        if ($authTest) {
+            if ($this->isUserAuth()) {
+                dump('1');
+                $this->runController();
+            } else {
+                dump('2');
+                $this->uri = '/login';
+            }
+        } else {
             $this->runController();
-        }else{
-            $this->uri = '/login';
         }
+
 
 
     }
@@ -49,7 +60,7 @@ class Router
     {
         // Вычленяем из нашей таблицы маршрутов имя Класса и метода для запуска
         $handler = explode('@', ROUTES[$this->uri]);
-        $controllerName = '\Loft\\Controllers\\'.$handler[0];
+        $controllerName = '\Loft\\Controllers\\' . $handler[0];
         $action = $handler[1];
 
         // Запускаем соотвествующий входящему пути контроллер и метод
@@ -58,9 +69,10 @@ class Router
 
     }
 
-    public function isUserAuth(){
+    public function isUserAuth()
+    {
         // код проверки
-        return true;
-}
+        return false;
+    }
 
 }

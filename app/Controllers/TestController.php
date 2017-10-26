@@ -7,20 +7,37 @@
  */
 
 namespace Loft\Controllers;
-
+use Loft\Template;
 use Loft\Models\TestModel;
 
 class TestController
 {
+//    public function index()
+//    {
+//        echo 'Тестовая страница';
+//        // получаем данные из ДБ и выводим
+//        echo $this->getData();
+//    }
+
     public function index()
     {
-        echo 'Тестовая страница';
-        // получаем данные из ДБ и выводим
-        echo $this->getData();
+//
+//        $content = $this->getData();
+//        dump($content);
+//        $vars =[
+//            'titlePage'=>'Тест',
+//            'content'=>$content,
+//            'header'=> 'Тест',
+//            'footer' => ''
+//        ];
 
-}
-    public function getData(){
+        echo $this->getData();
+//        echo Template::render('Views/main.tpl.php',$vars);
+    }
+
+    public function getData()
+    {
         $testModel = new TestModel();
-       return $testModel->getDataFromDB();
+        return $testModel->getDataFromDB();
     }
 }
