@@ -7,6 +7,7 @@
  */
 
 namespace Loft\Controllers;
+use Loft\Models\LoginModel;
 use Loft\Template;
 use Loft\Models\TestModel;
 
@@ -37,7 +38,9 @@ class TestController
 
     public function getData()
     {
-        $testModel = new TestModel();
+//        $testModel = new TestModel();
+//        return $testModel->getDataFromDB();
+        $testModel = new LoginModel();
         return $testModel->getDataFromDB();
     }
 }

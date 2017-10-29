@@ -1,4 +1,5 @@
 <h1 class="text-center">Форма обратной связи</h1>
+<p><a href="/">Вернуться на главную</a></p>
 <form action="" class="form-horizontal" id="ajax_form">
 	<div id="userName" class="form-group">
 		<label for="name" class="control-label col-sm-2">Ваше имя*</label>

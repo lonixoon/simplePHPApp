@@ -7,7 +7,8 @@
  */
 
 namespace Loft;
-
+use Loft\Controllers\LoginController;
+use Loft\Models\LoginModel;
 
 class Router
 {
@@ -24,29 +25,39 @@ class Router
         $this->uri = $uri;
     }
 
+    /**
+     *
+     */
     public function run()
     {
-        // Проверяем есть ли у нас такой маршрут, если нет то выводим стартовую страницу
+        // Записываем в бувер, что бы можно было изменить URI (ob_end_flush() - выдвод из буфера если их несколько)
+         ob_start();
+        // Проверяем адрес,
+        // Нет -> перекидываем на 404 станицу
         if (!$this->isFoundRoute()) {
-            $this->uri = '/404';
-        }
+            header('Location: /404');
+//            $this->uri = '/404'; // отрисовываем 404 страницу (без перехада не неё)
+            exit;
 
-        $authTest = in_array($this->uri, AUTHROUTES);
-
-        dump($authTest);
-
-        if ($authTest) {
-            if ($this->isUserAuth()) {
-                dump('1');
+        } // Если адрес есть -> Проверяем на запрещённые без авторизации
+        else {
+            // Требуется авторизация?
+            if (in_array($this->uri, AUTH_ROUTES)) {
+                // Авторизован -> Переходим по запросу
+                if ($this->isUserAuth()) {
+                    // Переходим по запрашиваемому URI
+                    $this->runController();
+                } // Неавторизован -> Выводим форму авторизации
+                else if (!$this->isUserAuth()){
+                    // Меняем заголовок
+                    header('Location: /login');
+                }
+            } // Не требуется авторизация
+            else {
+                // Переходим по запрашиваемому URI
                 $this->runController();
-            } else {
-                dump('2');
-                $this->uri = '/login';
             }
-        } else {
-            $this->runController();
         }
-
 
 
     }
@@ -69,10 +80,13 @@ class Router
 
     }
 
+    // проверка авторизации пользователя
     public function isUserAuth()
     {
-        // код проверки
-        return false;
+        $loginModel = new LoginModel();
+        return $loginModel->getDataFromDB();
+//        return false;
+//        return true;
     }
 
 }

@@ -15,6 +15,6 @@ define('ROUTES',[
     '/404' =>'ErrorController@index'
 ]);
 
-define('AUTHROUTES',[
+define('AUTH_ROUTES',[
     '/feedback'
 ]);

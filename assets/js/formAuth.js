@@ -6,21 +6,21 @@ $(document).ready(function () {
 
         if ($('#userLogin').hasClass('has-success')
             && $('#userPassword').hasClass('has-success')) {
-
-            var data = $('#auth_form').serialize(); // преобразуем всю форму в строку
-
-            $.ajax({
-                method: "POST",
-                url: "/feedback",
-                data: data,
-                success: function (data) {
-                    $('#result_auth').html('<div class="alert alert-success">' + data + '</div>');
-                    // $('#result_auth').html('<div class="alert alert-success">Оба!</div>');
-                }
-            });
+            $('#auth_form').submit();
+            // var data = $('#auth_form').serialize(); // преобразуем всю форму в строку
+            //
+            // $.ajax({
+            //     method: "POST",
+            //     url: "/feedback",
+            //     data: data,
+            //     success: function (data) {
+            //         // $('#result_auth').html('<div class="alert alert-success">' + data + '</div>');
+            //         // $('#result_auth').html('<div class="alert alert-success">Не правильный логин или пароль!</div>');
+            //     }
+            // });
         } else {
             $('#auth_form').submit();
-            // $('#result_auth').html('<div class="alert alert-danger">Не введён логин или пароль</div>');
+            $('#result_auth').html('<div class="alert alert-danger">Не введён логин или пароль</div>');
         }
     });
 });

@@ -1,4 +1,5 @@
 <?php
+
 namespace Loft;
 
 // Композер
@@ -10,12 +11,11 @@ require 'app/config.php';
 // Подключаем список маршрутов
 require 'app/routes.php';
 
-
 // Узнаем путь с которого пришел запрос
-$uri  = $_SERVER['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'];
 
 // Создаем роутер управляющий нашим приложением
-$router = new Router(ROUTES,$uri);
+$router = new Router(ROUTES, $uri);
 
 // Запускаем обработку входящего пути
 $router->run();

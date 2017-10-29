@@ -7,8 +7,7 @@
  */
 
 define('DB',[
+    'dsn' =>'mysql:dbname=backend;host=127.0.0.1:3306',
     'user' => 'root',
-    'password' =>'',
-    'name' =>'backend',
-    'host' =>'127.0.0.1:3306'
+    'password' =>''
 ]);

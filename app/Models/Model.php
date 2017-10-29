@@ -20,8 +20,11 @@ class Model
      */
     public function __construct()
     {
-        dump(DB);
-//        $this->db = new PDO("mysql:host={DB['host']};dbname={DB['name']}", DB['user'], DB['password']);
-        $this->db = new PDO("mysql:host=127.0.0.1:3306;dbname=backend", 'root', '');
+        try {
+//            $this->db = new PDO("mysql:host=127.0.0.1:3306;dbname=backend", 'root', '');
+            $this->db = new PDO(DB['dsn'], DB['user'], DB['password']);
+        } catch (\PDOException $e) {
+            echo 'Подключение не удалось: ' . $e->getMessage() . '<br>';
+        }
     }
 }

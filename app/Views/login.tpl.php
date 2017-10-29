@@ -1,7 +1,7 @@
 <h1 class="text-center">Страница авторизации</h1>
 <p><a href="/">Вернуться на главную</a></p>
 <p><a href="/reg">Регистрация</a></p>
-<form action="" class="form-horizontal" id="auth_form">
+<form action="/feedback" method="post" class="form-horizontal" id="auth_form">
 	<div class="form-group" id="userLogin">
 		<input name="login" type="text" placeholder="Логин" class="form-control field required"
 					 data-validation="required">

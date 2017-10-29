@@ -9,6 +9,7 @@
 namespace Loft\Controllers;
 
 use Loft\Template;
+use Loft\Models\LoginModel;
 
 class LoginController
 {
@@ -26,9 +27,15 @@ class LoginController
         echo Template::render('Views/main.tpl.php',$vars);
     }
 
-    public function isPost()
-    {
-        return isset($_POST['user']);
-    }
+//    public function getData()
+//    {
+//        $loginModel = new LoginModel();
+//        return $loginModel->getDataFromDB();
+//    }
+
+//    public function isPost()
+//    {
+//        return isset($_POST['user']);
+//    }
 
 }

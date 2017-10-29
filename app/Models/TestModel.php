@@ -18,6 +18,6 @@ class TestModel extends Model
         $sql = 'SELECT * FROM users';
         $result =$this->db->query($sql)->fetchAll();
         dump($result);
-        return print_r($result);
+        print_r($result);
     }
 }
