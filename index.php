@@ -2,6 +2,9 @@
 
 namespace Loft;
 
+// Подключаем сессии
+session_start();
+
 // Композер
 require 'vendor/autoload.php';
 
@@ -10,6 +13,8 @@ require 'app/config.php';
 
 // Подключаем список маршрутов
 require 'app/routes.php';
+
+
 
 // Узнаем путь с которого пришел запрос
 $uri = $_SERVER['REQUEST_URI'];

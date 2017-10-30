@@ -12,7 +12,7 @@
 	</div>
 	<div class="form-group">
 		<div class="controls">
-			<button id="btnAuth" type="button" class="btn">Войти</button>
+			<button id="btnAuth" type="submit" class="btn">Войти</button>
 		</div>
 	</div>
 </form>

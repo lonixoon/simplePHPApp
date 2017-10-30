@@ -9,6 +9,7 @@
 namespace Loft;
 use Loft\Controllers\LoginController;
 use Loft\Models\LoginModel;
+use Loft\Models\LoginModelNew;
 
 class Router
 {
@@ -18,6 +19,8 @@ class Router
 
     /**
      * Router constructor.
+     * @param array $routes
+     * @param string $uri
      */
     public function __construct(array $routes, string $uri)
     {
@@ -47,10 +50,13 @@ class Router
                 if ($this->isUserAuth()) {
                     // Переходим по запрашиваемому URI
                     $this->runController();
+
                 } // Неавторизован -> Выводим форму авторизации
-                else if (!$this->isUserAuth()){
+                else {
                     // Меняем заголовок
                     header('Location: /login');
+//                    dump(['Post', $_POST]);
+
                 }
             } // Не требуется авторизация
             else {
@@ -84,9 +90,10 @@ class Router
     public function isUserAuth()
     {
         $loginModel = new LoginModel();
-        return $loginModel->getDataFromDB();
-//        return false;
-//        return true;
+        $testLogin = $loginModel->Auth();
+//        dump(['Result', $testLogin]);
+//        dump(['Session', $_SESSION]);
+        return $testLogin;
     }
 
 }

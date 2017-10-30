@@ -13,7 +13,7 @@ class LoginModel extends Model
 {
     public function getDataFromDB()
     {
-        $login = $_POST['login'];
+        $login = strtolower($_POST['login']);
         $password = $_POST['password'];
 
         $sql = 'SELECT * FROM users
@@ -28,9 +28,23 @@ class LoginModel extends Model
 
         if ($res->rowCount() == 1) {
             $users = $res->fetchAll();
+//            dump(['dataDB', $users]);
             $_SESSION['id'] = $users[0] ['id'];
             $_SESSION['login'] = $users[0] ['login'];
+            $_SESSION['auth'] = true;
             return true;
+        } else {
+//            dump(['No dataDB']);
+            return false;
+        }
+    }
+
+    public function Auth()
+    {
+        $loginModel = new LoginModel();
+        $loginModel->getDataFromDB();
+        if (isset($_SESSION['auth'])) {
+            return $_SESSION['auth'];
         } else {
             return false;
         }
