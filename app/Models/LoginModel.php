@@ -13,7 +13,7 @@ namespace Loft\Models;
 
 class LoginModel extends Model
 {
-    public function getDataFromDB()
+    private function getDataFromDB()
     {
         // Заносим в переменные данные о логине и пароле которые прислал пользователь
         $login = strtolower($_POST['login']);

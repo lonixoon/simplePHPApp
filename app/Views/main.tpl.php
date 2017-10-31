@@ -11,18 +11,18 @@
       <?php echo $header; ?>
 	</header>
 
-	<section>
+	<main>
       <?php echo $content; ?>
-	</section>
+	</main>
 
 	<footer>
       <?php echo $footer; ?>
 	</footer>
 </div>
 <script src="/assets/js/jquery-3.2.1.min.js"></script>
-<script src="/assets/js/jquery-plugin/form-validator/jquery.form-validator.js"></script>
-<script src="/assets/js/formAuth.js"></script>
-<script src="/assets/js/formReg.js"></script>
-<script src="/assets/js/formFeedback.js"></script>
+<!--<script src="/assets/js/jquery-plugin/form-validator/jquery.form-validator.js"></script>-->
+<!--<script src="/assets/js/formAuth.js"></script>-->
+<!--<script src="/assets/js/formReg.js"></script>-->
+<!--<script src="/assets/js/formFeedback.js"></script>-->
 </body>
 </html>

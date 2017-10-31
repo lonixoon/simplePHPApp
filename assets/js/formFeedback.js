@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    $.validate({
-        // lang: 'ru' // язык по умолчанию
-    });
+    // $.validate({
+    //     lang: 'ru' // язык по умолчанию
+    // });
     $('#btn').click(function () {
 
         if ($('#userName').hasClass('has-success')

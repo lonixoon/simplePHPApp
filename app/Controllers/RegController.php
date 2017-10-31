@@ -8,6 +8,7 @@
 
 namespace Loft\Controllers;
 
+use Loft\Models\RegModel;
 use Loft\Template;
 
 class RegController
@@ -24,5 +25,11 @@ class RegController
         ];
 
         echo Template::render('Views/main.tpl.php',$vars);
+    }
+
+    public function reg()
+    {
+        $reg = new RegModel();
+        $reg->sendDataDB();
     }
 }

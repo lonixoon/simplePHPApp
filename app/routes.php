@@ -13,6 +13,7 @@ define('ROUTES',[
     '/logout' =>'LoginController@logOut',
     '/feedback' =>'FeedbackController@index',
     '/reg' =>'RegController@index',
+    '/regSendData' =>'RegController@reg',
     '/404' =>'ErrorController@index'
 ]);
 

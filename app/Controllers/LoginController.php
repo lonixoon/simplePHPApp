@@ -33,6 +33,5 @@ class LoginController
     {
         $_SESSION = [];
         $this->index();
-//        header('Location: /login');
     }
 }
