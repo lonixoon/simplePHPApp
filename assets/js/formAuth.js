@@ -28,8 +28,8 @@ $(document).ready(function () {
                 }
             });
         } else {
-            $('#auth_form').submit();
-            $('#result_auth').html('<div class="alert alert-danger">Не введён логин или пароль</div>');
+            // $('#auth_form').submit();
+            // $('#result_auth').html('<div class="alert alert-danger">Не введён логин или пароль</div>');
         }
     });
 });

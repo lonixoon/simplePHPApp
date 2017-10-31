@@ -10,6 +10,7 @@ define('ROUTES',[
     '/' => 'MainController@index',
     '/test' =>'TestController@index',
     '/login' =>'LoginController@index',
+    '/logout' =>'LoginController@logOut',
     '/feedback' =>'FeedbackController@index',
     '/reg' =>'RegController@index',
     '/404' =>'ErrorController@index'

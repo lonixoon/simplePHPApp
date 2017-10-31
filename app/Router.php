@@ -7,9 +7,8 @@
  */
 
 namespace Loft;
-use Loft\Controllers\LoginController;
+
 use Loft\Models\LoginModel;
-use Loft\Models\LoginModelNew;
 
 class Router
 {
@@ -33,39 +32,23 @@ class Router
      */
     public function run()
     {
-        // Записываем в бувер, что бы можно было изменить URI (ob_end_flush() - выдвод из буфера если их несколько)
-         ob_start();
-        // Проверяем адрес,
-        // Нет -> перекидываем на 404 станицу
-        if (!$this->isFoundRoute()) {
-            header('Location: /404');
-//            $this->uri = '/404'; // отрисовываем 404 страницу (без перехада не неё)
-            exit;
+        // Записываем в бувер ob_start();, что бы можно было изменить URI (ob_end_flush() - выдвод из буфера если их несколько)
 
-        } // Если адрес есть -> Проверяем на запрещённые без авторизации
-        else {
-            // Требуется авторизация?
-            if (in_array($this->uri, AUTH_ROUTES)) {
-                // Авторизован -> Переходим по запросу
-                if ($this->isUserAuth()) {
-                    // Переходим по запрашиваемому URI
-                    $this->runController();
-
-                } // Неавторизован -> Выводим форму авторизации
-                else {
-                    // Меняем заголовок
-                    header('Location: /login');
-//                    dump(['Post', $_POST]);
-
-                }
-            } // Не требуется авторизация
-            else {
-                // Переходим по запрашиваемому URI
-                $this->runController();
+        // Проверяем адрес -> есть такой? -> Отрисовываем запрашиваемую страницу
+        if ($this->isFoundRoute()) {
+            dump(['login' => $_SESSION['login']]);
+            // На страницу требуется авторизация? && Пользователь не авторизован? -> выводим форму авторизации
+            if (in_array($this->uri, AUTH_ROUTES) && (!$this->isUserAuth())) {
+                $this->uri = '/login';
+                // Пользователь авторизован? && Пытается зайти на форму авторизации? -> выводим главную страницу
+            } elseif ($this->isUserAuth() && $this->uri == '/login') {
+                $this->uri = '/';
             }
+        } // Проверяем адрес -> Нет такого? -> Отрисовываем 404 страницу
+        else {
+            $this->uri = '/404';
         }
-
-
+        $this->runController();
     }
 
     private function isFoundRoute()
@@ -90,10 +73,10 @@ class Router
     public function isUserAuth()
     {
         $loginModel = new LoginModel();
-        $testLogin = $loginModel->Auth();
-//        dump(['Result', $testLogin]);
+        $mySession = $loginModel->Auth();
+//        dump(['Result', $mySession]);
 //        dump(['Session', $_SESSION]);
-        return $testLogin;
+        return $mySession;
     }
 
 }

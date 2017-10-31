@@ -7,34 +7,42 @@
  */
 
 namespace Loft\Models;
-
+/*
+Работа с данными
+ * */
 
 class LoginModel extends Model
 {
     public function getDataFromDB()
     {
+        // Заносим в переменные данные о логине и пароле которые прислал пользователь
         $login = strtolower($_POST['login']);
         $password = $_POST['password'];
 
+        // Шаблон SQL запроса
         $sql = 'SELECT * FROM users
 	    WHERE 
 		  login = :login AND
 		  password = :password AND
 		  active = 1';
 
-        $data = ['login' => $login, 'password' => $password];
-        $res = $this->db->prepare($sql); // подготавлваем запрос к выполнению методом PDO
-        $res->execute($data); // подготавлеваем данные которые будут подставлятся в sql запрос
+        // Передаём запрос к выполнению методом PDO
+        $res = $this->db->prepare($sql);
 
-        if ($res->rowCount() == 1) {
+        // Поставляем логин и пароль в массив для дальнейшей обработки
+        $data = ['login' => $login, 'password' => $password];
+        // подготавлеваем данные которые будут подставлятся в sql запрос
+        $res->execute($data);
+
+        // Проверяем есть ли совпадения, если да, записываем сессию
+        if ($res->rowCount() == true) {
             $users = $res->fetchAll();
-//            dump(['dataDB', $users]);
-            $_SESSION['id'] = $users[0] ['id'];
+//            $_SESSION['id'] = $users[0] ['id'];
             $_SESSION['login'] = $users[0] ['login'];
             $_SESSION['auth'] = true;
             return true;
+            // Если нет совпадений, возвращаем лож
         } else {
-//            dump(['No dataDB']);
             return false;
         }
     }
@@ -43,7 +51,7 @@ class LoginModel extends Model
     {
         $loginModel = new LoginModel();
         $loginModel->getDataFromDB();
-        if (isset($_SESSION['auth'])) {
+        if (isset($_SESSION['login'])) {
             return $_SESSION['auth'];
         } else {
             return false;

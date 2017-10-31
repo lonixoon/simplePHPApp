@@ -6,36 +6,33 @@
  * Time: 11:14
  */
 
+/*
+ * Управление страницой
+ * */
 namespace Loft\Controllers;
 
 use Loft\Template;
-use Loft\Models\LoginModel;
 
 class LoginController
 {
     public function index()
     {
-        $content = Template::render('Views/login.tpl.php',[]);
+        $content = Template::render('Views/login.tpl.php', []);
 
-        $vars =[
-            'titlePage'=>'Авторизация',
-            'content'=>$content,
-            'header'=> '',
+        $vars = [
+            'titlePage' => 'Авторизация',
+            'content' => $content,
+            'header' => '',
             'footer' => ''
         ];
 
-        echo Template::render('Views/main.tpl.php',$vars);
+        echo Template::render('Views/main.tpl.php', $vars);
     }
 
-//    public function getData()
-//    {
-//        $loginModel = new LoginModel();
-//        return $loginModel->getDataFromDB();
-//    }
-
-//    public function isPost()
-//    {
-//        return isset($_POST['user']);
-//    }
-
+    public function logOut()
+    {
+        $_SESSION = [];
+        $this->index();
+//        header('Location: /login');
+    }
 }
