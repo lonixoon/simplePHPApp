@@ -15,6 +15,13 @@ class MainController
 {
     public function index()
     {
+        $this->render();
+        $this->showFeedback();
+    }
+
+    // Выводит основной шаблон статический шаблон
+    public function render()
+    {
         $content = Template::render('Views/Main/main.tpl.php', []);
 
         $vars = [
@@ -27,19 +34,25 @@ class MainController
         echo Template::render('Views/index.tpl.php', $vars);
     }
 
+    // Выдовод данных из базы
     public function showFeedback()
     {
-
-        $this->index();
         $mainModel = New MainModel();
+        // Получаем данные из базы ввиде вложенныех массивов
         $showFeedback = $mainModel->getFeedbackDB();
-        dump($showFeedback);
-        foreach ($showFeedback as $value) {
-            echo '<p>' . $value . '</p>';
+//        dump($showFeedback);
+        // Распаковка вложенных массивов, $a содержит первый элемент вложенного массива и т.д.
+        echo '<div class="row">';
+        foreach ($showFeedback as list($a, $b, $c)) {
+            // $a содержит первый элемент вложенного массива,
+            // а $b содержит второй элемент.
+            echo
+                '<div class="col-3 alert alert-info">
+                   <p class="alert alert-primary">' . $a . '</p>
+                   <p class="alert alert-primary">' . $b . '</p>
+                   <p class="alert alert-primary">' . $c . '</p>
+                </div>';
         }
-//        echo '<div class="alert alert-info"><p>' . $showFeedback[0]['name'] . '</p><p>' . $showFeedback[0]['email'] . '</p><p>' . $showFeedback[0]['text'] . '</p></div>';
-//        echo '<div class="alert alert-info"><p>' . $showFeedback[1]['name'] . '</p><p>' . $showFeedback[1]['email'] . '</p><p>' . $showFeedback[1]['text'] . '</p></div>';
-//        echo '<div class="alert alert-info"><p>' . $showFeedback[2]['name'] . '</p><p>' . $showFeedback[2]['email'] . '</p><p>' . $showFeedback[2]['text'] . '</p></div>';
+        echo '</div>';
     }
-
 }

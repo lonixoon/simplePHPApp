@@ -19,7 +19,8 @@ class MainModel extends Model
 //        $res ->execute();
 //        dump(['res' => $res]);
 //        dump(['result' => $result]);
-        $result = $res ->fetchAll(PDO::FETCH_COLUMN, 1);
+//        $result = $res ->fetchAll(PDO::FETCH_COLUMN, 1);
+        $result = $res ->fetchAll();
         return $result;
     }
 }

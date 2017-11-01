@@ -7,8 +7,8 @@
  */
 
 define('ROUTES',[
-//    '/' => 'MainController@index',
-    '/' => 'MainController@showFeedback',
+    '/' => 'MainController@index',
+//    '/' => 'MainController@showFeedback',
 
 
     '/test' =>'TestController@index',
