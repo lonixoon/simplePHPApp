@@ -20,6 +20,6 @@ class ErrorController
             'content'=>'<h1>Ой! Что то пошло не так :-(</h1><a href="/">Вернёмся на главную?</a>'
         ];
 
-       echo Template::render('Views/main.tpl.php',$vars);
+       echo Template::render('Views/index.tpl.php',$vars);
     }
 }

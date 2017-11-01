@@ -33,10 +33,9 @@ class Router
     public function run()
     {
         // Записываем в бувер ob_start();, что бы можно было изменить URI (ob_end_flush() - выдвод из буфера если их несколько)
-
         // Проверяем адрес -> есть такой? -> Отрисовываем запрашиваемую страницу
         if ($this->isFoundRoute()) {
-            dump(['login' => $_SESSION['login']]);
+//            dump(['login' => $_SESSION['login']]);
             // На страницу требуется авторизация? && Пользователь не авторизован? -> выводим форму авторизации
             if (in_array($this->uri, AUTH_ROUTES) && (!$this->isUserAuth())) {
                 $this->uri = '/login';

@@ -17,7 +17,7 @@ class LoginController
 {
     public function index()
     {
-        $content = Template::render('Views/login.tpl.php', []);
+        $content = Template::render('Views/Auth/login.tpl.php', []);
 
         $vars = [
             'titlePage' => 'Авторизация',
@@ -26,12 +26,13 @@ class LoginController
             'footer' => ''
         ];
 
-        echo Template::render('Views/main.tpl.php', $vars);
+        echo Template::render('Views/index.tpl.php', $vars);
     }
 
-    public function logOut()
+    public function loginOut()
     {
         $_SESSION = [];
         $this->index();
+        echo '<p class="alert alert-success">Пока! Спасибо что зашли к нам в гости :-)</p>';
     }
 }

@@ -13,7 +13,7 @@ namespace Loft\Models;
 
 class LoginModel extends Model
 {
-    private function getDataFromDB()
+    public function getDataFromDB()
     {
         // Заносим в переменные данные о логине и пароле которые прислал пользователь
         $login = strtolower($_POST['login']);
@@ -34,8 +34,8 @@ class LoginModel extends Model
         // подготавлеваем данные которые будут подставлятся в sql запрос
         $res->execute($data);
 
-        // Проверяем есть ли совпадения, если да, записываем сессию
-        if ($res->rowCount() == true) {
+        // Проверяем есть ли совпадения в базе, если да, записываем сессию
+        if ($res->rowCount()) {
             $users = $res->fetchAll();
 //            $_SESSION['id'] = $users[0] ['id'];
             $_SESSION['login'] = $users[0] ['login'];

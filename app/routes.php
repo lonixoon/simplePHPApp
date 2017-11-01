@@ -7,13 +7,21 @@
  */
 
 define('ROUTES',[
-    '/' => 'MainController@index',
+//    '/' => 'MainController@index',
+    '/' => 'MainController@showFeedback',
+
+
     '/test' =>'TestController@index',
+
     '/login' =>'LoginController@index',
-    '/logout' =>'LoginController@logOut',
+    '/loginOut' =>'LoginController@loginOut',
+
     '/feedback' =>'FeedbackController@index',
+    '/feedbackSend' =>'FeedbackController@feedbackSend',
+
     '/reg' =>'RegController@index',
     '/regSendData' =>'RegController@reg',
+
     '/404' =>'ErrorController@index'
 ]);
 

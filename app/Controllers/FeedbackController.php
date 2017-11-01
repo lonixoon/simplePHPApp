@@ -8,13 +8,14 @@
 
 namespace Loft\Controllers;
 
+use Loft\Models\FeedbackModel;
 use Loft\Template;
 
 class FeedbackController
 {
     public function index()
     {
-        $content = Template::render('Views/form.tpl.php',[]);
+        $content = Template::render('Views/Feedback/form.tpl.php',[]);
 
         $vars =[
             'titlePage'=>'Форма отзыва',
@@ -22,6 +23,16 @@ class FeedbackController
             'content'=>$content
         ];
 
-       echo Template::render('Views/main.tpl.php',$vars);
+       echo Template::render('Views/index.tpl.php',$vars);
+    }
+
+    public function feedbackSend()
+    {
+        $feedback = New FeedbackModel();
+        $feedback->sendFeedbackDB();
+        $index = New MainController();
+        $index->showFeedback();
+        echo '<p class="alert alert-success">Спасибо за отзыв!</p>';
+
     }
 }

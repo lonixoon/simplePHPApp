@@ -13,23 +13,33 @@ use Loft\Template;
 
 class RegController
 {
+    private $content;
+    private $vars;
+
     public function index()
     {
-        $content = Template::render('Views/reg.tpl.php',[]);
+        $this->content = Template::render('Views/Reg/reg.tpl.php', []);
 
-        $vars =[
-            'titlePage'=>'Регистрация',
-            'content'=>$content,
-            'header'=> '',
+        $this->vars = [
+            'titlePage' => 'Регистрация',
+            'content' => $this->content,
+            'header' => '',
             'footer' => ''
         ];
 
-        echo Template::render('Views/main.tpl.php',$vars);
+        echo Template::render('Views/index.tpl.php', $this->vars);
     }
 
     public function reg()
     {
         $reg = new RegModel();
-        $reg->sendDataDB();
+        if ($reg->sendDataDB()) {
+            $auhPage = new LoginController();
+            $auhPage->index();
+            echo '<p class="alert alert-success">Пользователь зареган!</p>';
+        } else {
+            $this->index();
+            echo '<div class="alert alert-danger">Такой пользователь уже есть</div>';
+        }
     }
 }
