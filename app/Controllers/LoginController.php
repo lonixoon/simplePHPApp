@@ -32,7 +32,8 @@ class LoginController
     public function loginOut()
     {
         $_SESSION = [];
-        $this->index();
+//        $this->index();
+        header('location: /');
         echo '<p class="alert alert-success">Пока! Спасибо что зашли к нам в гости :-)</p>';
     }
 }

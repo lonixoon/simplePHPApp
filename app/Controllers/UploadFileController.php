@@ -1,17 +1,18 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: RU00160171
- * Date: 24.10.2017
- * Time: 11:14
+ * User: RUS9211689
+ * Date: 02.11.2017
+ * Time: 10:40
  */
 
 namespace Loft\Controllers;
 
-use Loft\Models\FeedbackModel;
+
+use Loft\Models\UploadFileModel;
 use Loft\Template;
 
-class FeedbackController
+class UploadFileController extends Controller
 {
     // функция по умолчнию при попадании на страницу /feedback
     public function index()
@@ -20,21 +21,25 @@ class FeedbackController
     }
 
     // Отправка отзыва в базу /feedbackSend
-    public function feedbackSend()
+    public function uploadSend()
     {
-        $feedback = New FeedbackModel();
+        $feedback = New UploadFileModel();
         // Добавляем отзыв в базу
         $feedback->sendFeedbackDB();
+        $feedback->checkFile();
+        dump($_POST['name']);
+        dump($_FILES['img']);
+        print_r($_FILES['img']);
         // Меняем заголов на главную страницу
-        header('location: /');
+//        header('location: /');
 //        $index = New MainController();
 //        $index->index();
-        echo '<p class="alert alert-success">Спасибо за отзыв!</p>';
+//        echo '<p class="alert alert-success">Спасибо за отзыв!</p>';
     }
 
     private function render()
     {
-        $content = Template::render('Views/Feedback/form.tpl.php',[]);
+        $content = Template::render('Views/UploadFile/upload.tpl.php',[]);
 
         $vars =[
             'titlePage'=>'Форма отзыва',
@@ -42,8 +47,6 @@ class FeedbackController
             'content'=>$content
         ];
 
-       echo Template::render('Views/index.tpl.php',$vars);
+        echo Template::render('Views/index.tpl.php',$vars);
     }
-
-
 }

@@ -42,7 +42,7 @@ class MainController
         $showFeedback = $mainModel->getFeedbackDB();
 //        dump($showFeedback);
         // Распаковка вложенных массивов, $a содержит первый элемент вложенного массива и т.д.
-        echo '<div class="row">';
+        echo '<div class="container"><div class="row">';
         foreach ($showFeedback as list($a, $b, $c)) {
             // $a содержит первый элемент вложенного массива,
             // а $b содержит второй элемент.
@@ -53,6 +53,6 @@ class MainController
                    <p class="alert alert-primary">' . $c . '</p>
                 </div>';
         }
-        echo '</div>';
+        echo '</div></div>';
     }
 }

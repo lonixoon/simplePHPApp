@@ -27,9 +27,21 @@ class Router
         $this->uri = $uri;
     }
 
-    /**
-     *
-     */
+    // Вычисляет и запускает контролеер из таблици маршрутов
+    public function runController()
+    {
+        // Вычленяем из нашей таблицы маршрутов имя Класса и метода для запуска
+        $handler = explode('@', ROUTES[$this->uri]);
+        $controllerName = '\Loft\\Controllers\\' . $handler[0];
+        $action = $handler[1];
+
+        // Запускаем соотвествующий входящему пути контроллер и метод
+        $controller = new $controllerName();
+        $controller->$action();
+
+    }
+
+    // Основная функция выполняющая маршрутизацию
     public function run()
     {
         // Записываем в бувер ob_start();, что бы можно было изменить URI (ob_end_flush() - выдвод из буфера если их несколько)
@@ -43,8 +55,8 @@ class Router
             } elseif ($this->isUserAuth() && $this->uri == '/login') {
                 $this->uri = '/';
             }
-        } // Проверяем адрес -> Нет такого? -> Отрисовываем 404 страницу
-        else {
+            // Проверяем адрес -> Нет такого? -> Отрисовываем 404 страницу
+        } else {
             $this->uri = '/404';
         }
         $this->runController();
@@ -55,18 +67,7 @@ class Router
         return array_key_exists($this->uri, $this->routes);
     }
 
-    public function runController()
-    {
-        // Вычленяем из нашей таблицы маршрутов имя Класса и метода для запуска
-        $handler = explode('@', ROUTES[$this->uri]);
-        $controllerName = '\Loft\\Controllers\\' . $handler[0];
-        $action = $handler[1];
 
-        // Запускаем соотвествующий входящему пути контроллер и метод
-        $controller = new $controllerName();
-        $controller->$action();
-
-    }
 
     // проверка авторизации пользователя
     public function isUserAuth()

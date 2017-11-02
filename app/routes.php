@@ -8,10 +8,12 @@
 
 define('ROUTES',[
     '/' => 'MainController@index',
-//    '/' => 'MainController@showFeedback',
 
 
     '/test' =>'TestController@index',
+
+    '/uploadFile' =>'UploadFileController@index',
+    '/uploadSend' =>'UploadFileController@uploadSend',
 
     '/login' =>'LoginController@index',
     '/loginOut' =>'LoginController@loginOut',
@@ -26,5 +28,6 @@ define('ROUTES',[
 ]);
 
 define('AUTH_ROUTES',[
-    '/feedback'
+    '/feedback',
+    '/feedbackSend'
 ]);
